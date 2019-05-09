@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+
+
+<head>
+    <title>User</title>
+</head>
+<body>
+<div layout:fragment="continut">
+<h2>User from database</h2>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>First name </th>
+        <th>Last name</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>City</th>
+        <th>Adrees</th>
+        <th>Phone</th>
+    </tr>
+    <tr th:each = "x: ${userList}">
+        <td th:text="${x.id}"></td>
+        <td th:text="${x.firstName}"></td>
+        <td th:text="${x.lastName}"></td>
+        <td th:text="${x.userName}"></td>
+        <td th:text="${x.password}"></td>
+        <td th:text="${x.city}"></td>
+        <td th:text="${x.adrees}"></td>
+        <td th:text="${x.phone}"></td>
+    </tr>
+</table>
+
+<input type="button" onclick="window.location='/user/add';" value="Add user"/>
+<br><a href="/user/add">Link catre Add user</a>
+<br><a href="/user/login">Link catre Login</a>
+<br><a href="/user/register">Link catre Register</a>
+</div>
+</body>
+</html>
