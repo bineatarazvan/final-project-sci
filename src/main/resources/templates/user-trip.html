@@ -1,0 +1,53 @@
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+<head>
+    <title>Connect to your trip account</title>
+</head>
+<body>
+<div layout:fragment="continut" class="container">
+    <table>
+        <tr>
+            <td th:text="${userLogin != null} ? ${userLogin.userName} : 'User neautentificat!'"></td>
+        </tr>
+    </table>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <form class="form-horizontal" th:action="@{/user/login}" th:object="${userLogin}" method="post">
+    <label>Select list</label>
+    <select id = "myList">
+        <option value = "1">one</option>
+        <option value = "2">two</option>
+        <option value = "3">three</option>
+        <option value = "4">four</option>
+    </select>
+    </form>
+
+    <form class="form-horizontal" th:action="@{/trip/edit}" th:object="${userLogin}" method="post">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default" name="edit-button" type="submit">Edit</button>
+        </div>
+    </form>
+
+    <form class="form-horizontal" th:action="@{/trip/add}" th:object="${userLogin}" method="get">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default" name="add-button" type="submit">Add</button>
+        </div>
+    </form>
+
+    <form class="form-horizontal" th:action="@{/trip}" th:object="${userLogin}" method="post">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button class="btn btn-default" name="delete-button" type="submit">Delete</button>
+        </div>
+    </form>
+
+<body>
+
+</body>
+</html>

@@ -11,13 +11,16 @@
 <h2>User from database</h2>
 <table>
     <tr>
+        <td th:text="${userLogin != null} ? ${userLogin.userName} : 'User neautentificat!'"></td>
+    </tr>
+    <tr>
         <th>Id</th>
         <th>First name </th>
         <th>Last name</th>
         <th>Username</th>
         <th>Password</th>
         <th>City</th>
-        <th>Adrees</th>
+        <th>Address</th>
         <th>Phone</th>
     </tr>
     <tr th:each = "x: ${userList}">
@@ -27,7 +30,7 @@
         <td th:text="${x.userName}"></td>
         <td th:text="${x.password}"></td>
         <td th:text="${x.city}"></td>
-        <td th:text="${x.adrees}"></td>
+        <td th:text="${x.address}"></td>
         <td th:text="${x.phone}"></td>
     </tr>
 </table>

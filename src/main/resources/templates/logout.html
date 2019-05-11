@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+<head>
+    <title>Connect to your trip account</title>
+</head>
+
+<body>
+
+<div layout:fragment="continut" class="container">
+    <br><a href="/user/login":>Login</a>
+
+
+        <form class="form-horizontal" th:action="@{/user/logout}" th:object="${userLogout}" method="post">
+
+            <div class="form-group">
+            <label class="control-label col-sm-2" for="userName">Username</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="userName" type="text" th:field="*{userName}"/>
+                <small th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></small>
+            </div>
+        </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="password">password</label>
+                <div class="col-sm-4">
+                    <input class="form-control" id="password" type="text" th:field="*{password}"/>
+                    <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default" type="submit">Submit</button>
+                </div>
+            </div>
+
+
+    </form>
+</div>
+    </body>
+    </html>

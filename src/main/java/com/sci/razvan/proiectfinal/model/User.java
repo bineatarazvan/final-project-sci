@@ -19,12 +19,12 @@ public class User {
     @Size(min=1, max=30)//mesage = "invalid")
     @Column(name ="username")
     private String userName;
-    @Size(min=8, max=8)
+    @Size(min=8, max=12)
     private String password;
     @Size(min=3, max=30)//mesage = "invalid")
     private String city;
-    @Size(min=20, max=50)//mesage = "invalid")
-    private String adrees;
+    @Size(min=3, max=30)//mesage = "invalid")
+    private String address;
     @Size(min=10, max=14)//mesage = "invalid")
     private String phone;
 
@@ -76,12 +76,12 @@ public class User {
         this.city = city;
     }
 
-    public String getAdrees() {
-        return adrees;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdrees(String adrees) {
-        this.adrees = adrees;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPhone() {
@@ -101,7 +101,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
                 ", city='" + city + '\'' +
-                ", adrees='" + adrees + '\'' +
+                ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
     }

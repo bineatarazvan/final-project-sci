@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.Iterator;
 
 @Controller
 @RequestMapping(path = "/user")
@@ -19,10 +20,17 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(path = "/s")
+    @GetMapping(path = "")
     public ModelAndView getAllUser(){
         ModelAndView mv = new ModelAndView("user-page");
         mv.addObject("userList", userService.getAllUsers());
+        int counter=0;
+        Iterator i = userService.getAllUsers().iterator();
+        while(i.hasNext()){
+            counter++;
+            i.next();
+        }
+        System.out.println("No. of users from DB:" + counter);
         return mv;
         //pe pagina user-page se va putea accesa atributul userList cu valoarea pe care o stocheaza el
     }
@@ -30,6 +38,7 @@ public class UserController {
     @GetMapping(path = "/add")
     public String showAddAuthorPage(Model model){
         model.addAttribute("user", new User());
+        System.out.println("Go to page add-user");
         return "add-user";
     }
 
@@ -37,9 +46,11 @@ public class UserController {
     public String saveNewUser(@Valid User user, BindingResult bindingResult){
         System.out.println("User: " + user);//cand afisam un string + un obiect stie automat sa sa apeleze toString pentru obiect
         if(bindingResult.hasErrors()){
+            System.out.println("Error when trying to insert");
             return "add-user";
         }
         userService.saveUser(user);
-        return "redirect:/user/s";
+            System.out.println("New user was saved!");
+        return "redirect:/user/login";
     }
 }
