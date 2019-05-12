@@ -15,29 +15,34 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(path = "/user")
+@RequestMapping(path = "")
 public class LoginController {
     @Autowired
     UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("login-page");
-        mav.addObject("userLogin", new User());
-        return mav;
+    public String login(Model model, String error, String logout) {
+        model.addAttribute("userLogin", new User());
+        if (error != null)
+            model.addAttribute("errorMsg", "Your username and password are invalid.");
+        if (logout != null)
+            model.addAttribute("msg", "You have been logged out successfully.");
+
+        return "login";
     }
 
     @RequestMapping(value = "/login",params = "login-button", method = RequestMethod.POST)
-    public ModelAndView userLogin(@Valid User user, BindingResult bindingResult){
+    public String userLogin(@Valid User user, BindingResult bindingResult){
+/*
+        if(userService.searchIfUserExist(user.getUsername(), user.getPassword())){
+            return "redirect:/user";
 
-        if(userService.searchIfUserExist(user.getUserName(), user.getPassword())){
-            ModelAndView mav = new ModelAndView("user-trip");
-            mav.addObject("userLogin", user);
-            return mav;
         }else{
-            ModelAndView mav = new ModelAndView("login-page");
-            return mav;
+            return "redirect:/login";
+
         }
+        */
+        return "redirect:/user";
     }
 
     @RequestMapping(value = "/login",params = "signup-button", method = RequestMethod.POST)

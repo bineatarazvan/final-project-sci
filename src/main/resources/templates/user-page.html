@@ -10,9 +10,10 @@
 <div layout:fragment="continut">
 <h2>User from database</h2>
 <table>
-    <tr>
-        <td th:text="${userLogin != null} ? ${userLogin.userName} : 'User neautentificat!'"></td>
-    </tr>
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
     <tr>
         <th>Id</th>
         <th>First name </th>
@@ -27,7 +28,7 @@
         <td th:text="${x.id}"></td>
         <td th:text="${x.firstName}"></td>
         <td th:text="${x.lastName}"></td>
-        <td th:text="${x.userName}"></td>
+        <td th:text="${x.username}"></td>
         <td th:text="${x.password}"></td>
         <td th:text="${x.city}"></td>
         <td th:text="${x.address}"></td>

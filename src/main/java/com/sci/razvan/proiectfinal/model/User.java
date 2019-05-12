@@ -18,7 +18,7 @@ public class User {
     private String lastName;
     @Size(min=1, max=30)//mesage = "invalid")
     @Column(name ="username")
-    private String userName;
+    private String username;
     @Size(min=8, max=12)
     private String password;
     @Size(min=3, max=30)//mesage = "invalid")
@@ -52,12 +52,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -98,7 +98,7 @@ public class User {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +

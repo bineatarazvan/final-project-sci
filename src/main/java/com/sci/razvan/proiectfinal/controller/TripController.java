@@ -27,7 +27,7 @@ public class TripController {
     public ModelAndView addNewTrip (@Valid User user,HttpServletRequest request, HttpServletResponse response){
         ModelAndView mav = new ModelAndView("add-trip");
         mav.addObject("userLogin", user);
-        System.out.println("-------------------->"+user.getUserName());
+        System.out.println("-------------------->"+user.getUsername());
         mav.addObject("trip", new Trips());
 
         return mav;

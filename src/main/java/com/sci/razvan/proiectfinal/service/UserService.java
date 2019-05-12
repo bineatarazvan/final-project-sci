@@ -2,7 +2,7 @@ package com.sci.razvan.proiectfinal.service;
 
 
 import com.sci.razvan.proiectfinal.model.User;
-import com.sci.razvan.proiectfinal.model.UserRepository;
+import com.sci.razvan.proiectfinal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +22,12 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public boolean searchIfUserExist(String user, String password){
-        List<User> userList = userRepository.searchUser(user, password);
+    public User searchIfUserExist(String user){
+        List<User> userList = userRepository.searchUser(user);
 
         if (userList != null && !userList.isEmpty())
-            return true;
+            return userList.get(0);
         else
-            return false;
+            return null;
     }
 }
