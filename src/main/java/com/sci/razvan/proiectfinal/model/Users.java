@@ -4,9 +4,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name="user")
+@Table(name="users")
 
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -27,6 +27,34 @@ public class User {
     private String address;
     @Size(min=10, max=14)//mesage = "invalid")
     private String phone;
+    @Size(min=3, max=14)//mesage = "invalid")
+    private String role;
+
+    public Users(int id, @Size(min = 3, max = 30) String firstName, @Size(min = 3, max = 30) String lastName, @Size(min = 1, max = 30) String username, @Size(min = 8, max = 12) String password, @Size(min = 3, max = 30) String city, @Size(min = 3, max = 30) String address, @Size(min = 10, max = 14) String phone, @Size(min = 3, max = 14) String role) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.city = city;
+        this.address = address;
+        this.phone = phone;
+        this.role = role;
+    }
+
+    public Users(@Size(min = 1, max = 30) String username, @Size(min = 8, max = 12) String password, @Size(min = 3, max = 14) String role) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
+    public Users(@Size(min = 1, max = 30) String username, @Size(min = 8, max = 12) String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public Users() {
+    }
 
     public int getId() {
         return id;
@@ -92,9 +120,17 @@ public class User {
         this.phone = phone;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Users{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -103,6 +139,7 @@ public class User {
                 ", city='" + city + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

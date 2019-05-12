@@ -24,7 +24,7 @@
         <th>Address</th>
         <th>Phone</th>
     </tr>
-    <tr th:each = "x: ${userList}">
+    <tr th:each = "x: ${usersList}">
         <td th:text="${x.id}"></td>
         <td th:text="${x.firstName}"></td>
         <td th:text="${x.lastName}"></td>
@@ -36,8 +36,8 @@
     </tr>
 </table>
 
-<input type="button" onclick="window.location='/user/add';" value="Add user"/>
-<br><a href="/user/add">Link catre Add user</a>
+<input type="button" onclick="window.location='/user/add';" value="Add users"/>
+<br><a href="/user/add">Link catre Add users</a>
 <br><a href="/user/login">Link catre Login</a>
 <br><a href="/user/register">Link catre Register</a>
 </div>

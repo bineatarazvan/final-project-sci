@@ -1,9 +1,8 @@
 package com.sci.razvan.proiectfinal.controller;
 
 import com.sci.razvan.proiectfinal.model.Trips;
-import com.sci.razvan.proiectfinal.model.User;
+import com.sci.razvan.proiectfinal.model.Users;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,12 +23,17 @@ public class TripController {
      */
 
     @RequestMapping(value = "/add",params = "add-button", method = RequestMethod.GET)
-    public ModelAndView addNewTrip (@Valid User user,HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView addNewTrip (@Valid Users users, HttpServletRequest request, HttpServletResponse response){
         ModelAndView mav = new ModelAndView("add-trip");
-        mav.addObject("userLogin", user);
-        System.out.println("-------------------->"+user.getUsername());
+        mav.addObject("userLogin", users);
+        System.out.println("-------------------->"+ users.getUsername());
         mav.addObject("trip", new Trips());
 
         return mav;
+    }
+
+    @RequestMapping(value = "",method = RequestMethod.GET)
+    public String goToTripPage (){
+        return "user-trip";
     }
 }
