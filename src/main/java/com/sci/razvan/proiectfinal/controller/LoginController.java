@@ -33,11 +33,7 @@ public class LoginController {
     public String root() {
         return "user-trip";
     }
-//    @RequestMapping(value = "/login",method = RequestMethod.POST)
-//    public String login(@Valid Users userLogin, BindingResult bindingResult){
-//        System.out.println("userLogin--------------------------------------------");
-//        return "redirect:/trip";
-//    }
+
 
 }
 
