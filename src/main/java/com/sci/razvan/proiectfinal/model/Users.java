@@ -19,7 +19,7 @@ public class Users {
     @Size(min=1, max=30)//mesage = "invalid")
     @Column(name ="username")
     private String username;
-    @Size(min=8, max=12)
+    @Size(min=8, max=1024)
     private String password;
     @Size(min=3, max=30)//mesage = "invalid")
     private String city;

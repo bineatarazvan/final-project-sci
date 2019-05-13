@@ -10,6 +10,9 @@
     <!--    <span th:text="${#authentication.getPrincipal()}"></span> No ".getUsername()"-->
 
     <form class="form-horizontal" th:action="@{/users/login}" th:object="${userLogin}" method="post">
+
+
+
         <label>Select list</label>
         <select id = "myList">
             <option value = "1">one</option>

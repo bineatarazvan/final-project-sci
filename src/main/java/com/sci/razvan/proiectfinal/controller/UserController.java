@@ -23,6 +23,7 @@ public class UserController  {
 
     @GetMapping(path = "/user")
     public ModelAndView getAllUser(){
+        //pe pagina user-page se va putea accesa atributul userList cu valoarea pe care o stocheaza el
         ModelAndView mv = new ModelAndView("user-page");
         mv.addObject("userList", userService.getAllUsers());
         int counter=0;
@@ -33,14 +34,13 @@ public class UserController  {
         }
         System.out.println("No. of users from DB:" + counter);
         return mv;
-        //pe pagina user-page se va putea accesa atributul userList cu valoarea pe care o stocheaza el
     }
 
-    @GetMapping(path = "/user/add")
-    public String showAddAuthorPage(Model model){
-        model.addAttribute("user", new Users());
-        System.out.println("Go to page add-user");
-        return "add-user.html";
+    @GetMapping(path = "user/add")
+    public ModelAndView showAddAuthorPage(Model model){
+        ModelAndView mv = new ModelAndView("add-user");
+        mv.addObject("user", new Users());
+        return mv;
     }
 
     @PostMapping(path="/user/add")

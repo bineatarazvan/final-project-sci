@@ -4,6 +4,7 @@ package com.sci.razvan.proiectfinal.service;
 import com.sci.razvan.proiectfinal.model.Users;
 import com.sci.razvan.proiectfinal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +20,8 @@ public class UserService {
     }
 
     public void saveUser (Users users) {
+
+        users.setPassword(encrytePassword(users.getPassword()));
         userRepository.save(users);
     }
 
@@ -35,5 +38,10 @@ public class UserService {
 
             return null;
         }
+    }
+    // Encryte Password with BCryptPasswordEncoder
+    public static String encrytePassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.encode(password);
     }
 }
