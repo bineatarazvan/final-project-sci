@@ -54,7 +54,9 @@ public class UserController  {
         users.setRole("user");
         userService.saveUser(users);
         System.out.println("New users was saved!");
-        return new ModelAndView("login");
+        mv = new ModelAndView("login");
+        mv.addObject("userLogin",new Users());
+        return mv;
 
     }
 }

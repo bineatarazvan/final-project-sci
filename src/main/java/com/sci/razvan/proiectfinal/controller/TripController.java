@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,6 +41,12 @@ public class TripController {
     @Autowired
     private UserService userService;
 
+
+    @ModelAttribute("trip")
+    public Trip exam() {
+        return new Trip();
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addTrip(@Valid Trip trip, BindingResult bindingResult ){
 
@@ -51,7 +58,7 @@ public class TripController {
             tripService.saveNewTrip(trip);
             mv = new ModelAndView("user-trip");
             System.out.println("Go to trip page for user !!!");
-            List<Trip> trips = tripService.findAllTripsForUser();
+            List<Trip> trips = tripService.findAllTripsForUser(getCurrentUser());
             mv.addObject("trips", trips);
             return mv;
 
@@ -67,21 +74,30 @@ public class TripController {
         mv.addObject("trip", new Trip());
         return mv;
     }
-/*
-    @RequestMapping(value = "",method = RequestMethod.GET)
-    public String goToTripPage ()
-    {
-        return "user-trip";
-    }
-*/
+
     @RequestMapping(value = "/details", method = RequestMethod.GET)
     public ModelAndView goToTripPage(Model model) {
         ModelAndView mv = new ModelAndView("user-trip");
         System.out.println("Go to trip page for user !!!");
-        List<Trip> trips = tripService.findAllTripsForUser();
+        List<Trip> trips = tripService.findAllTripsForUser(getCurrentUser());
         mv.addObject("trips", trips);
+        mv.addObject("trip", new Trip());
 
         return mv;
+    }
+
+    @RequestMapping(value = "/details", method = RequestMethod.POST)
+    public String showSelectedTripDetails(@ModelAttribute("trip") Trip trip, Model model) {
+
+        System.out.println("Trip with id " + trip.getId() + " was selected!!");
+        if(trip.getId() != 0) {
+            Trip t = tripService.getTrip(trip);
+            model.addAttribute("trip", t);
+        }
+        List<Trip> trips = tripService.findAllTripsForUser(getCurrentUser());
+        model.addAttribute("trips", trips);
+
+        return "user-trip";
     }
 
     private Users getCurrentUser(){

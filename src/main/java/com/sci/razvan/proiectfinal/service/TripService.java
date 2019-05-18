@@ -2,6 +2,7 @@ package com.sci.razvan.proiectfinal.service;
 
 import com.sci.razvan.proiectfinal.controller.Test;
 import com.sci.razvan.proiectfinal.model.Trip;
+import com.sci.razvan.proiectfinal.model.Users;
 import com.sci.razvan.proiectfinal.repository.TripRepositiry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,15 @@ public class TripService {
         tripRepositiry.findAll().forEach(list::add);
         System.out.println("Found " + list.size() + " trips!!!");
         return list;
+    }
+
+    public List<Trip> findAllTripsForUser(Users user) {
+        List<Trip> list = new ArrayList<>();
+        list = tripRepositiry.findTripsByUserId(user.getId());
+        System.out.println("Found " + list.size() + " trips!!!");
+        return list;
+    }
+    public Trip getTrip(Trip trip){
+        return tripRepositiry.findTripById(trip.getId());
     }
 }

@@ -7,22 +7,58 @@
 </head>
 <body>
     <div layout:fragment="continut" class="container">
-        <form class="form-horizontal" th:action="@{/trip/details}" method="post">
-            Hello <span th:text ="${#authentication.getPrincipal().getUsername()}"></span>!
 
-            <tr class="blank_row">
-                <td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
-            </tr>
-
+        <form class="form-horizontal"  th:action="@{/trip/details}" th:object="${trip}" method="post">
             <div class="form-horizontal blu-margin">
-                <select class="form-control"   id="dropTrip">
+                <select class="form-control" id="dropTrip" name="dropTrip" th:field="*{id}">
                     <option value="0">--select trip--</option>
                     <option th:each="trip : ${trips}" th:value="${trip.id}" th:text="${trip.tripName}"></option>
                 </select>
             </div>
 
+            <table>
+                <tr>
+                    <td>
+                        <label>Trip title</label>
+                    </td>
+                    <td>
+                        <label th:text="${trip?.tripName}"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Trip started from</label>
+                    </td>
+                    <td>
+                        <label th:text="${trip?.dateFrom}"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Trip ended in</label>
+                    </td>
+                    <td>
+                        <label th:text="${trip?.dateTo}"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Details about this trip</label>
+                    </td>
+                    <td>
+                        <label th:text="${trip?.impresion}"></label>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="col-sm-2 col-sm-offset-10">
+                <button class="form-control btn btn-info" name="search-button" type="submit">Search</button>
+            </div>
         </form>
 
+        <tr class="blank_row">
+            <td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
+        </tr>
 
         <form class="form-horizontal" th:action="@{/trip/add}" th:object="${userLogin}" method="get">
             <div class="col-sm-2 col-sm-offset-10">

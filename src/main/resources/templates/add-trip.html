@@ -7,11 +7,7 @@
 <body>
 
 <div layout:fragment="continut" class="container">
-    <table>
-        <tr>
-            Hello <span th:text ="${#authentication.getPrincipal().getUsername()}"></span>!
-        </tr>
-    </table>
+
     <br>New trip details
     <form class="form-horizontal" th:action="@{/trip/add}" th:object="${trip}" method="post">
         <div class="form-group">
