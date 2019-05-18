@@ -6,41 +6,49 @@
     <title>Connect to your trip account</title>
 </head>
 <body>
-<div layout:fragment="continut" class="container">
+    <div layout:fragment="continut" class="container">
+        <form class="form-horizontal" th:action="@{/trip/details}" method="post">
+            Hello <span th:text ="${#authentication.getPrincipal().getUsername()}"></span>!
+
+            <tr class="blank_row">
+                <td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
+            </tr>
+
+            <div class="form-horizontal blu-margin">
+                <select class="form-control"   id="dropTrip">
+                    <option value="0">--select trip--</option>
+                    <option th:each="trip : ${trips}" th:value="${trip.id}" th:text="${trip.tripName}"></option>
+                </select>
+            </div>
+
+        </form>
 
 
-    <form class="form-horizontal" th:action="@{/users/login}" th:object="${userLogin}" method="post">
+        <form class="form-horizontal" th:action="@{/trip/add}" th:object="${userLogin}" method="get">
+            <div class="col-sm-2 col-sm-offset-10">
+                <button class="form-control btn btn-info" name="add-button" type="submit">Add</button>
+            </div>
+        </form>
 
+        <tr class="blank_row">
+            <td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
+        </tr>
 
+        <form class="form-horizontal" th:action="@{/trip/edit}" th:object="${userLogin}" method="post">
+            <div class="col-sm-2 col-sm-offset-10">
+                <button class="form-control btn btn-info" name="add-button" type="submit">Edit</button>
+            </div>
+        </form>
 
-        <label>Select list</label>
-        <select id = "myList">
-            <option value = "1">one</option>
-            <option value = "2">two</option>
-            <option value = "3">three</option>
-            <option value = "4">four</option>
-        </select>
-    </form>
+        <tr class="blank_row">
+            <td bgcolor="#FFFFFF" colspan="3">&nbsp;</td>
+        </tr>
 
-    <form class="form-horizontal" th:action="@{/trip/edit}" th:object="${userLogin}" method="post">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-default" name="edit-button" type="submit">Edit</button>
-        </div>
-    </form>
-
-    <form class="form-horizontal" th:action="@{/trip/add}" th:object="${userLogin}" method="get">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-default" name="add-button" type="submit">Add</button>
-        </div>
-    </form>
-
-    <form class="form-horizontal" th:action="@{/trip}" th:object="${userLogin}" method="post">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button class="btn btn-default" name="delete-button" type="submit">Delete</button>
-        </div>
-    </form>
-
-<body>
-
+        <form class="form-horizontal" th:action="@{/trip}" th:object="${userLogin}" method="post">
+            <div class="col-sm-2 col-sm-offset-10">
+            <button class="form-control btn btn-info" name="delete-button" type="submit">Delete</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

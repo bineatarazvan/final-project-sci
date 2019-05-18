@@ -44,15 +44,17 @@ public class UserController  {
     }
 
     @PostMapping(path="/user/add")
-    public String saveNewUser(@Valid Users users, BindingResult bindingResult){
+    public ModelAndView saveNewUser(@Valid Users users, BindingResult bindingResult){
         System.out.println("Users: " + users);//cand afisam un string + un obiect stie automat sa sa apeleze toString pentru obiect
+        ModelAndView mv;
         if(bindingResult.hasErrors()){
-            System.out.println("Error when trying to insert");
-            return "add-user";
+            System.out.println("Error when trying to insert" + bindingResult.getFieldError().toString());
+            return new ModelAndView("add-user");
         }
         users.setRole("user");
         userService.saveUser(users);
-            System.out.println("New users was saved!");
-        return "redirect:/login";
+        System.out.println("New users was saved!");
+        return new ModelAndView("login");
+
     }
 }

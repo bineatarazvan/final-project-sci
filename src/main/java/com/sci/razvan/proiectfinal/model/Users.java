@@ -2,6 +2,8 @@ package com.sci.razvan.proiectfinal.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="users")
@@ -142,4 +144,14 @@ public class Users {
                 ", role='" + role + '\'' +
                 '}';
     }
+ /*
+    public void removeTrips(Trip trip){
+        tripsSet.remove(trip);
+        trip.setUsers(null);
+    }
+    public void addTrips(Trip trip){
+        tripsSet.add(trip);
+        trip.setUsers(this);
+    }
+    */
 }
