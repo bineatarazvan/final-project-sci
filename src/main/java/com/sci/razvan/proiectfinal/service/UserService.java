@@ -44,5 +44,9 @@ public class UserService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
+    public void updateUser (Users users) {
+        users.setRole("user");
+        userRepository.save(users);
+    }
 
 }

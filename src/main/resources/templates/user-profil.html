@@ -1,16 +1,22 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
 <head>
-    <title>Add user</title>
+    <title>Your profile</title>
 </head>
 
 <body>
 
 <div layout:fragment="continut" class="container">
 
-    <br>Create new account
-    <form class="form-horizontal" th:action="@{/user/add}" th:object="${user}" method="post">
+    <br>Your profile
+    <form class="form-horizontal" th:action="@{/user/profile}" th:object="${user}" method="post">
 
+        <div class="form-group">
+            <input type="hidden" th:value="*{id}" name="id"/>
+        </div>
+        <div class="form-group">
+            <input type="hidden" th:value="*{password}" name="password"/>
+        </div>
         <div class="form-group">
             <label class="control-label col-sm-2" for="firstName">First name</label>
             <div class="col-sm-4">
@@ -30,16 +36,8 @@
         <div class="form-group">
             <label class="control-label col-sm-2" for="username">User name</label>
             <div class="col-sm-4">
-                <input class="form-control" id="username" type="text" th:field="*{username}"/>
+                <input class="form-control" id="username" type="text" th:field="*{username}" readonly/>
                 <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="password">Password</label>
-            <div class="col-sm-4">
-                <input class="form-control" id="password" type="text" th:field="*{password}"/>
-                <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
             </div>
         </div>
 
@@ -69,16 +67,18 @@
 
         <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">
-                <button class="form-control btn btn-info" type="submit">Create</button>
+                <button class="form-control btn btn-info" type="submit">Save changes</button>
             </div>
         </div>
 
-        <div>
+        <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">
-                <button class="form-control btn btn-info" onclick="window.location='/login';" type="button">Cancel</button>
+                <button class="form-control btn btn-info" onclick="window.location='/trip/details';" type="button">Cancel</button>
             </div>
         </div>
-
+        <div class="form-group">
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+        </div>
     </form>
 </div>
 </body>

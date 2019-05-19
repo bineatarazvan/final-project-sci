@@ -27,7 +27,6 @@ public class Trip {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateTo;
 
-    @Size(min=0, max=100)
     private String impresion;
 
     @Size(min=3, max=30)//mesage = "invalid")

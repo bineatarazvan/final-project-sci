@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TripService {
@@ -19,6 +20,10 @@ public class TripService {
     public void saveNewTrip(Trip trip) {
         System.out.println("save trip");
         tripRepositiry.save(trip);
+    }
+    public void deleteTrip(Trip trip) {
+        System.out.println("delete trip");
+        tripRepositiry.delete(trip);
     }
 
     public List<Trip> findAllTripsForUser() {
@@ -37,5 +42,12 @@ public class TripService {
     }
     public Trip getTrip(Trip trip){
         return tripRepositiry.findTripById(trip.getId());
+    }
+
+    public Trip getTripById(Trip trip){
+        if(tripRepositiry.findById(trip.getId()).isPresent()){
+            return tripRepositiry.findById(trip.getId()).get();
+        }
+        return null;
     }
 }

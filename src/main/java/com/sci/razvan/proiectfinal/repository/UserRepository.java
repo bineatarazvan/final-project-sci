@@ -14,4 +14,9 @@ public interface UserRepository extends CrudRepository <Users, Id>{
 
     @Query(value = "SELECT * FROM users u WHERE u.username = :user ", nativeQuery = true)
     public List<Users> searchUser(@Param("user") String user);
+
+    @Query(value = "update Users u set u.firstName =:firstname, u.lastName =:lastname, u.city=:city, u.phone=:phone, u.address=:address where u.id=:id", nativeQuery = true)
+    public void updareUser(@Param("firstname") String firstname, @Param("lastname") String lastname,
+                           @Param("city") String city, @Param("phone") String phone, @Param("address") String address,
+                           @Param("id") int id);
 }

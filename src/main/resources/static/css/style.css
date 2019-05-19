@@ -32,3 +32,31 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+table.bg-blue {
+  background: #1aa3ff;
+  text-align:justify;
+}
+
+table.align-justify {
+  margin-top: 10px;
+  text-align:justify;
+}
+button{
+    width:140px;
+    height:40px;
+    float: left;
+    margin-left:5px;
+}
+
+h1 {
+   color: blue;
+   font-weight: bold;
+}
+h3 {
+   color: white;
+    font-style: italic;
+}
+body {
+    font-family: cursive;
+}
