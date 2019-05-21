@@ -1,5 +1,6 @@
 package com.sci.razvan.proiectfinal.model;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -29,15 +30,21 @@ public class Trip {
 
     private String impresion;
 
-    @Size(min=3, max=30)//mesage = "invalid")
-    @Lob
-    @Column(name ="photo1")
-    private byte[] photoPath1;
+//    @Size(min=3, max=30)//mesage = "invalid")
+//    @Lob
+//    @Column(name ="photo1")
+//    private byte[]             System.out.println("binding has erore trip!!!!!!!!!!!!!!!!!!!!!!!");;
+//
+//    @Size(min=3, max=30)//mesage = "invalid")
+//    @Lob
+//    @Column(name ="photo2")
+//    private byte[] photoPath2;
 
-    @Size(min=3, max=30)//mesage = "invalid")
-    @Lob
+    @Column(name ="photo1")
+    private String photoPath1;
+
     @Column(name ="photo2")
-    private byte[] photoPath2;
+    private String photoPath2;
 
     @ManyToOne
     @JoinColumn(name = "userid")
@@ -47,9 +54,29 @@ public class Trip {
     }
 
     public Trip(int id, @Size(min = 3, max = 30) String tripName,
-                @Size(min = 3, max = 30) LocalDate dateFrom, LocalDate dateTo,
-                @Size(min = 0, max = 100) String impresion, @Size(min = 3, max = 30) byte[] photoPath1,
-                @Size(min = 3, max = 30) byte[] photoPath2, Users users) {
+                LocalDate dateFrom, LocalDate dateTo, String impresion, Users users) {
+        this.id = id;
+        this.tripName = tripName;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.impresion = impresion;
+        this.users = users;
+    }
+
+    public Trip(int id, @Size(min = 3, max = 30) String tripName, LocalDate dateFrom,
+                LocalDate dateTo, String impresion, String photoPath1, Users users) {
+        this.id = id;
+        this.tripName = tripName;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
+        this.impresion = impresion;
+        this.photoPath1 = photoPath1;
+        this.users = users;
+    }
+
+    public Trip(int id, @Size(min = 3, max = 30) String tripName,
+                LocalDate dateFrom, LocalDate dateTo, String impresion, String photoPath1,
+                String photoPath2, Users users) {
         this.id = id;
         this.tripName = tripName;
         this.dateFrom = dateFrom;
@@ -57,17 +84,6 @@ public class Trip {
         this.impresion = impresion;
         this.photoPath1 = photoPath1;
         this.photoPath2 = photoPath2;
-        this.users = users;
-    }
-
-    public Trip(int id, @Size(min = 3, max = 30) String tripName,
-                @Size(min = 3, max = 30) LocalDate dateFrom, LocalDate dateTo,
-                @Size(min = 0, max = 100) String impresion, Users users) {
-        this.id = id;
-        this.tripName = tripName;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-        this.impresion = impresion;
         this.users = users;
     }
 
@@ -119,19 +135,19 @@ public class Trip {
         this.impresion = impresion;
     }
 
-    public byte[] getPhotoPath1() {
+    public String getPhotoPath1() {
         return photoPath1;
     }
 
-    public void setPhotoPath1(byte[] photoPath1) {
+    public void setPhotoPath1(String photoPath1) {
         this.photoPath1 = photoPath1;
     }
 
-    public byte[] getPhotoPath2() {
+    public String getPhotoPath2() {
         return photoPath2;
     }
 
-    public void setPhotoPath2(byte[] photoPath2) {
+    public void setPhotoPath2(String photoPath2) {
         this.photoPath2 = photoPath2;
     }
 
@@ -143,8 +159,8 @@ public class Trip {
                 ", dateFrom=" + dateFrom +
                 ", dateTo=" + dateTo +
                 ", impresion='" + impresion + '\'' +
-                ", photoPath1=" + Arrays.toString(photoPath1) +
-                ", photoPath2=" + Arrays.toString(photoPath2) +
+                ", photoPath1='" + photoPath1 + '\'' +
+                ", photoPath2='" + photoPath2 + '\'' +
                 ", users=" + users +
                 '}';
     }
@@ -153,22 +169,23 @@ public class Trip {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Trip trips = (Trip) o;
-        return id == trips.id &&
-                Objects.equals(tripName, trips.tripName) &&
-                Objects.equals(dateFrom, trips.dateFrom) &&
-                Objects.equals(dateTo, trips.dateTo) &&
-                Objects.equals(impresion, trips.impresion) &&
-                Arrays.equals(photoPath1, trips.photoPath1) &&
-                Arrays.equals(photoPath2, trips.photoPath2) &&
-                Objects.equals(users, trips.users);
+        Trip trip = (Trip) o;
+        return id == trip.id &&
+                Objects.equals(tripName, trip.tripName) &&
+                Objects.equals(dateFrom, trip.dateFrom) &&
+                Objects.equals(dateTo, trip.dateTo) &&
+                Objects.equals(impresion, trip.impresion) &&
+                Objects.equals(photoPath1, trip.photoPath1) &&
+                Objects.equals(photoPath2, trip.photoPath2) &&
+                Objects.equals(users, trip.users);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, tripName, dateFrom, dateTo, impresion, users);
-        result = 31 * result + Arrays.hashCode(photoPath1);
-        result = 31 * result + Arrays.hashCode(photoPath2);
-        return result;
+        return Objects.hash(id, tripName, dateFrom, dateTo, impresion, photoPath1, photoPath2, users);
     }
+
+//    public String getBase64Photo(){
+//        return Base64.encodeBase64String(this.photoPath1);
+//    }
 }

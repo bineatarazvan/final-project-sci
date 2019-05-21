@@ -19,34 +19,51 @@ public class UserService {
         return userRepository.findAll();
     }
 
+    /**
+     * method will take a user object and will save it in the DB
+     *
+     * @param users
+     */
     public void saveUser (Users users) {
-
         users.setPassword(encrytePassword(users.getPassword()));
         userRepository.save(users);
     }
 
+    /**
+     * method returns a user object only if the user recived as a parameter exist in the DB
+     *
+     * @param user
+     * @return
+     */
     public Users searchIfUserExist(String user){
         List<Users> usersList = userRepository.searchUser(user);
 
         if (usersList != null && !usersList.isEmpty()){
-            System.out.println("usersList.get(0)--------"+usersList.get(0).getUsername());
             return usersList.get(0);
         }
-
         else {
-            System.out.println("usersList.get(0)------nullll--");
-
             return null;
         }
     }
-    // Encryte Password with BCryptPasswordEncoder
+
+    /**
+     * this method will return the Encryte Password with BCryptPasswordEncoder
+     *
+     * @param password
+     * @return
+     */
     public static String encrytePassword(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
+
+    /**
+     * methid update an existing user from the DB
+     *
+     * @param users
+     */
     public void updateUser (Users users) {
         users.setRole("user");
         userRepository.save(users);
     }
-
 }

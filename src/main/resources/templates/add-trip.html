@@ -9,7 +9,7 @@
 <div layout:fragment="continut" class="container">
 
     <br>New trip details
-    <form class="form-horizontal" th:action="@{/trip/add}" th:object="${trip}" method="post">
+    <form class="form-horizontal" th:action="@{/trip/add}" th:object="${trip}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="control-label col-sm-2" for="tripName">Trip name</label>
             <div class="col-sm-4">
@@ -39,14 +39,25 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-sm-2 col-sm-offset-4">
-                <button class="form-control btn btn-info" type="submit">Save</button>
+            <div class="col-sm-4">
+            <table>
+                <tr>
+                    <td> <input type="file" name="fileToUpload1"/> </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td> <input type="file" name="fileToUpload2"/> </td>
+                </tr>
+            </table>
+            <div class="col-sm-2 col-sm-offset-10">
+                        <button class="btn btn-info pull-right" type="submit">Save</button>
             </div>
-        </div>
-
+            <div class="col-sm-2 col-sm-offset-10">
+                <button class="btn btn-info pull-right" onclick="window.location='/trip/details';" type="button">Cancel</button>
+            </div>
+            </div>
         <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
-
     </form>
 </div>
 </body>

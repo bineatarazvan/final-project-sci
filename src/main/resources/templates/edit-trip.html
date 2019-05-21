@@ -9,7 +9,7 @@
 <div layout:fragment="continut" class="container">
 
     <h3>Trip details</h3>
-    <form class="form-horizontal" th:action="@{/trip/edit}" th:object="${trip}" method="post">
+    <form class="form-horizontal" th:action="@{/trip/edit}" th:object="${trip}" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <input type="hidden" th:value="*{id}" name="id" />
         </div>
@@ -41,6 +41,31 @@
                 <small th:if="${#fields.hasErrors('impresion')}" th:errors="*{impresion}"></small>
             </div>
         </div>
+
+
+
+        <div class="form-group">
+            <label class="control-label col-sm-2">Photo1</label>
+            <div class="col-sm-4">
+                <img th:attr="src=@{'data:image/jpg;base64, '+${trip?.getPhotoPath1()}}" class="resize"/>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td> <input type="file" name="fileToUpload1"/> </td>
+            </tr>
+        </table>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Photo2</label>
+            <div class="col-sm-4">
+                <img th:attr="src=@{'data:image/jpg;base64, '+${trip?.getPhotoPath2()}}" class="resize"/>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td> <input type="file" name="fileToUpload2"/> </td>
+            </tr>
+        </table>
 
         <div class="form-group">
             <div class="col-sm-2 col-sm-offset-4">

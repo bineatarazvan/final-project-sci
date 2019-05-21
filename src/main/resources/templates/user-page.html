@@ -12,10 +12,8 @@ Hello
 <div layout:fragment="continut">
 <h2>User from database</h2>
 <table>
-    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
+    <h2 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h2>
+
     <tr>
         <th>Id</th>
         <th>First name </th>
@@ -39,6 +37,9 @@ Hello
 </table>
 
 <input type="button" onclick="window.location='/user/add';" value="Add users"/>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
 <br><a href="/user/add">Link catre Add users</a>
 <br><a href="/user/login">Link catre Login</a>
 <br><a href="/user/register">Link catre Register</a>

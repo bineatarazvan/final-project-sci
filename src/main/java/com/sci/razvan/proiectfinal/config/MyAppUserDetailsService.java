@@ -1,7 +1,6 @@
 package com.sci.razvan.proiectfinal.config;
 
 import java.util.Arrays;
-
 import com.sci.razvan.proiectfinal.model.Users;
 import com.sci.razvan.proiectfinal.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

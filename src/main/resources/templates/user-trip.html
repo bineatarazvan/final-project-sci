@@ -8,10 +8,9 @@
     <div layout:fragment="continut" class="container">
 
         <form class="form-horizontal"  th:action="@{/trip/details}" th:object="${trip}" method="post">
-
-            <table class="bg-blue" style="width:100%">
+            <table class="bg-image" style="width:100%">
                 <tr>
-                    <td align="center"> <h4>Select a trip</h4></td>
+                    <td align="center"> <h3>Select a trip</h3></td>
                     <td colspan="4" align="center">
                         <div class="form-horizontal blu-margin ">
                             <select class="form-control" id="dropTrip" name="dropTrip" th:field="*{id}">
@@ -53,9 +52,6 @@
                             </div>
                         </div>
                     </td>
-                    <td>
-
-                    </td>
                 </tr>
                 <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
             </table>
@@ -80,6 +76,11 @@
                     </td>
                 </tr>
                 <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+                <tr>
+                    <td colspan="2"><img th:attr="src=@{'data:image/jpg;base64, '+${trip?.getPhotoPath1()}}"/></td>
+                    <td align="center"></td>
+                    <td colspan="2"><img th:attr="src=@{'data:image/jpg;base64, '+${trip?.getPhotoPath2()}}"/></td>
+                </tr>
                 <tr>
                     <td colspan="5">
                         <h4 th:text="${trip?.impresion}"></h4>
