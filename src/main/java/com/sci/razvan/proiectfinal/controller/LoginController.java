@@ -1,3 +1,4 @@
+
 package com.sci.razvan.proiectfinal.controller;
 import com.sci.razvan.proiectfinal.model.Users;
 import com.sci.razvan.proiectfinal.service.UserService;
@@ -9,6 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+/**
+ *
+ * @author Rzv Bineata
+ * 22/05/2019
+ */
 
 @Controller
 public class LoginController {

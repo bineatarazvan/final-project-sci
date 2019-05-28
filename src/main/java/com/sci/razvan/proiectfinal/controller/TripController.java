@@ -19,6 +19,12 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ *
+ * @author Rzv Bineata
+ * 22/05/2019
+ */
+
 @Controller
 @RequestMapping(value = "/trip")
 public class TripController {

@@ -9,6 +9,12 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ *
+ * @author Rzv Bineata
+ * 22/05/2019
+ */
+
 @Entity
 @Table(name="trip")
 public class Trip {

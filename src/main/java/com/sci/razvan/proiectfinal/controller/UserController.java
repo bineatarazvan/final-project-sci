@@ -9,8 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.Iterator;
+
+/**
+ *
+ * @author Rzv Bineata
+ * 22/05/2019
+ */
 
 @RestController
 public class UserController  {

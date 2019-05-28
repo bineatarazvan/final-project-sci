@@ -5,6 +5,11 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * @author Rzv Bineata
+ * 22/05/2019
+ */
 @Entity
 @Table(name="users")
 

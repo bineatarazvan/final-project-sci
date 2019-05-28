@@ -10,6 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ *
+ * @author Rzv Bineata
+ * 22/05/2019
+ */
 
 @Controller
 public class LogoutController {
