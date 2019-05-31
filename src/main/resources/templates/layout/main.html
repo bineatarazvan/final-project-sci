@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+    https://www.thymeleaf.org/doc/articles/springsecurity.html
+    https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
+-->
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" media="screen" th:href="@{/css/style.css}"/>
+    </head>
+<!--
+    <body th:style="'background:url(' + @{/img/i.jpg} + ');'">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Shaqi_jrvej.jpg/1200px-Shaqi_jrvej.jpg">
+-->
+    <body style="background-image:url('https://cdn.allwallpaper.in/wallpapers/1920x1080/13659/very-cool-blue-sky-1920x1080-wallpaper.jpg');">\
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-collapse collapse"></div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li sec:authorize="isAuthenticated()">
+                            <a  href="/trip" th:href="@{/trip/details}" class="btn-login">Trips</a>
+                            <font color="white" align="center" >Hello <label th:text ="${#authentication.getPrincipal().getUsername()}"></label>! </font>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li sec:authorize="isAuthenticated()">
+                            <a href="/login" th:href="@{/user/profile}" class="btn-login">Profile</a>
+                        </li>
+                        <li sec:authorize="isAnonymous()">
+                            <a href="/login" th:href="@{/login}" class="btn-login">Sign In</a>
+                        </li>
+                        <li sec:authorize="isAuthenticated()">
+                            <a th:href="@{/logout}" class="btn-logout">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div layout:fragment="continut">
+        </div>
+    </body>
+</html>

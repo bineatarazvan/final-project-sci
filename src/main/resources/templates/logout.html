@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+<head>
+    <title>Log-in</title>
+</head>
+
+<p align="right">This is some text in a paragraph.
+    <body>
+        <div layout:fragment="continut" class="container">
+            <div class="container" >
+                <form class="form-signin" th:action="@{/login}" th:object="${userLogin}" method="post">
+                    <h2 class="form-signin-heading">Please sign in</h2>
+                    <label for="username" class="sr-only">Username</label>
+                    <input class="form-control" id="username" type="text"   placeholder="Username" th:field="*{username}" required autofocus>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Password" th:field="*{password}" required>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" id="login-submit" name="login-submit" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-primary btn-block" onclick="window.location='/user/add';" type="button">Sign Up</button>
+
+                    <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

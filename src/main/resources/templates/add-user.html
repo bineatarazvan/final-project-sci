@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+<head>
+    <title>Add user</title>
+</head>
+
+<body>
+
+<div layout:fragment="continut" class="container">
+    <br>Create new account
+    <form class="form-horizontal" th:action="@{/user/add}" th:object="${user}" method="post">
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="firstName">First name</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="firstName" type="text"  th:field="*{firstName}"/><!--  placeholder="First name"--><!--required autofocus-->
+                <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="lastName">Last name</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="lastName" type="text" th:field="*{lastName}"/>
+                <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="username">User name</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="username" type="text" th:field="*{username}"/>
+                <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="password">Password</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="password" type="text" th:field="*{password}"/>
+                <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="city">City</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="city" type="text" th:field="*{city}"/>
+                <small th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="phone">Phone</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="phone" type="text" th:field="*{phone}"/>
+                <small th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="address">Address</label>
+            <div class="col-sm-4">
+                <input class="form-control" id="address" type="text" th:field="*{address}"/>
+                <small th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 col-sm-offset-4">
+                <button class="form-control btn btn-info" type="submit">Create</button>
+            </div>
+        </div>
+
+        <div>
+            <div class="col-sm-2 col-sm-offset-4">
+                <button class="form-control btn btn-info" onclick="window.location='/login';" type="button">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

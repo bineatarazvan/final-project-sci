@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main}">
+
+<head>
+    <title>Connect to your trip account</title>
+</head>
+<body>
+    <div layout:fragment="continut" class="container">
+
+        <form class="form-horizontal"  th:action="@{/trip/details}" th:object="${trip}" method="post">
+            <table class="bg-image" style="width:100%">
+                <tr>
+                    <td align="center"> <h3>Select a trip</h3></td>
+                    <td colspan="4" align="center">
+                        <div class="form-horizontal blu-margin ">
+                            <select class="form-control" id="dropTrip" name="dropTrip" th:field="*{id}">
+                                <option value="0">--select trip--</option>
+                                <option th:each="trip : ${trips}" th:value="${trip.id}" th:text="${trip.tripName}"></option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+                <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+                <tr>
+                    <td align="center"></td>
+                    <td>
+                        <div>
+                            <div class="col-sm-2 col-sm-offset-10">
+                                <button class="btn btn-info pull-right"  name="show-info" type="submit">Show information</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <div class="col-sm-2 col-sm-offset-10">
+                                <button class="btn btn-info pull-right" name="edit-button" type="submit">Edit</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <div class="col-sm-2 col-sm-offset-10">
+                                <button class="btn btn-info pull-right" name="delete-button" type="submit">Delete</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <div class="col-sm-2 col-sm-offset-10">
+                                <button class="btn btn-info pull-right" onclick="window.location='/trip/add';" type="button">Add</button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+            </table>
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"/>
+
+            <table class="align-justify" style="width:100%">
+                <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+                <tr>
+                    <td colspan="5" align="center">
+                        <h1 th:text="${trip?.tripName}"></h1>
+                    </td>
+                </tr>
+                <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+                <tr>
+                    <td colspan="2"  align="right">
+                        <h3 th:text="${trip?.dateFrom}"></h3>
+                    </td>
+                    <td align="center"> <h3>-</h3> </td>
+                    <td colspan="2"  align="left" style="">
+                        <h3 th:text="${trip?.dateTo}"></h3>
+                    </td>
+                </tr>
+                <tr><td style="line-height:10px;" colspan=5>&nbsp;</td></tr>
+                <tr>
+                    <td colspan="2"><img th:attr="src=@{'data:image/jpg;base64, '+${trip?.getPhotoPath1()}}"/></td>
+                    <td align="center"></td>
+                    <td colspan="2"><img th:attr="src=@{'data:image/jpg;base64, '+${trip?.getPhotoPath2()}}"/></td>
+                </tr>
+                <tr>
+                    <td colspan="5">
+                        <h4 th:text="${trip?.impresion}"></h4>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
